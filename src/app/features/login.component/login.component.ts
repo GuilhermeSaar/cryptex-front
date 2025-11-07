@@ -1,13 +1,13 @@
 import {Component, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
 import {CommonModule} from '@angular/common';
 import {MatCardModule} from '@angular/material/card';
+import {Router} from '@angular/router';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 import {AuthService} from '../../core/service/auth.service';
 
 
@@ -30,6 +30,7 @@ export class LoginComponent {
 
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
   hidePassword = true;
 
@@ -44,7 +45,11 @@ export class LoginComponent {
     this.authService.login(this.loginForm.value as any).subscribe({
       next: response => {
         console.log('Token recebido:', response.token);
-        alert('Login bem-sucedido!');
+
+        localStorage.setItem('token', response.token);
+
+        this.router.navigate(['/dashboard']);
+
       },
       error: err => {
         console.error('Erro no login', err);
