@@ -46,10 +46,7 @@ export class LoginComponent {
       next: response => {
         console.log('Token recebido:', response.token);
 
-        localStorage.setItem('token', response.token);
-
         this.router.navigate(['/dashboard']);
-
       },
       error: err => {
         console.error('Erro no login', err);

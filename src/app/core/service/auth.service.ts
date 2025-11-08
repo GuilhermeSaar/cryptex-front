@@ -8,25 +8,25 @@ import {Observable, tap} from 'rxjs';
 export class AuthService {
 
   private http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:8080/api/auth';
+  private readonly apiurl = 'http://localhost:8080/api/auth';
+  private readonly TOKEN_KEY = 'jwt_token';
 
   login(payload: LoginPayload): Observable<TokenResponse> {
-    return this.http.post<TokenResponse>(`${this.apiUrl}/login`, payload)
+
+    return this.http.post<TokenResponse>(`${this.apiurl}/login`, payload)
       .pipe(
         tap(response => {
-          localStorage.setItem('jwt_token', response.token)
+          sessionStorage.setItem(this.TOKEN_KEY, response.token);
         })
       );
   }
 
   logout(): void {
-
-    localStorage.removeItem('jwt_token');
+    sessionStorage.removeItem(this.TOKEN_KEY);
   }
 
-  getToken(): string | null {
-
-    return localStorage.getItem('jwt_token');
+  getToken(): string | null{
+    return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
   isAuthenticated(): boolean {
