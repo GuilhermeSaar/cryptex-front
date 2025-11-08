@@ -1,0 +1,45 @@
+
+<div class="transaction-container">
+  <mat-card class="transaction-card">
+    <mat-card-header>
+      <mat-card-title>Registrar transação</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="form" class="transaction-form">
+        <mat-form-field appearance="fill" class="cripto">
+          <mat-label>Criptoativo</mat-label>
+          <input matInput formControlName="crypto" placeholder="Ex: BTC, ETH">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="tipo">
+          <mat-label>Tipo de Transação</mat-label>
+          <mat-select formControlName="type">
+            <mat-option value="compra">Compra</mat-option>
+            <mat-option value="venda">Venda</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="quantidade">
+          <mat-label>Quantidade (USD)</mat-label>
+          <input matInput formControlName="amountUsd">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="preco">
+          <mat-label>Preço</mat-label>
+          <input matInput formControlName="price">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="quantidade-cripto">
+          <mat-label>Quantidade Cripto</mat-label>
+          <input matInput formControlName="amountCrypto" placeholder="Ex..BTC,ETH">
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+
+
+
+

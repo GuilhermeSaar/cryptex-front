@@ -1,0 +1,9 @@
+.transaction-form {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
